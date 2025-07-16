@@ -4,7 +4,7 @@ import os
 from github import Github
 
 # --- Set token as environment variable ---
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "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")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "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")
 REPO_NAME = "mariaherliana1/auto-anna-form"
 
 g = Github(GITHUB_TOKEN)
