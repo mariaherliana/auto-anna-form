@@ -1,9 +1,11 @@
 import streamlit as st
 import re
+import os
 
-IDN_AREA_CODES = "idn_area_codes.py"
-INTERNATIONAL_RATES = "international_rates.py"
-VALID_CARRIERS = ["Indosat", "Atlasat"]  # Add more if needed
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # goes up to repo root
+
+IDN_AREA_CODES = os.path.join(BASE_DIR, "idn_area_codes.py")
+INTERNATIONAL_RATES = os.path.join(BASE_DIR, "international_rates.py")
 
 # ---------- INIT ----------
 if "step" not in st.session_state:
