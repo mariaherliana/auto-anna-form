@@ -130,6 +130,5 @@ INTERNATIONAL_RATES = {
         "International - LBN": 4250,
         "International - NGA": 2750,
         "International - COL": 2500,
-        "International - TZA": 8750.0,
 },
 }
