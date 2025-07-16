@@ -109,7 +109,6 @@ INTERNATIONAL_PHONE_PREFIXES = {
     961: "LBN",
     356: "MLT",
     234: "NGA",
-    255: "TZA",
 }
 
 PHONE_PREFIXES: {int: str} = {
