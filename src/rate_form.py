@@ -2,8 +2,10 @@ import streamlit as st
 import re
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # goes up to repo root
+# ==== CONSTANTS ====
+VALID_CARRIERS = ["Atlasat", "Indosat"]
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # goes up to repo root
 IDN_AREA_CODES = os.path.join(BASE_DIR, "idn_area_codes.py")
 INTERNATIONAL_RATES = os.path.join(BASE_DIR, "international_rates.py")
 
