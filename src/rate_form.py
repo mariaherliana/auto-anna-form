@@ -1,6 +1,27 @@
 import streamlit as st
 import re
 import os
+from github import Github
+
+# --- Set token as environment variable ---
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "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")
+REPO_NAME = "mariaherliana1/auto-anna-form"
+
+g = Github(GITHUB_TOKEN)
+repo = g.get_repo(REPO_NAME)
+
+def push_to_github(file_path, commit_message):
+    with open(file_path, "r") as f:
+        content = f.read()
+
+    try:
+        file = repo.get_contents(file_path)
+        repo.update_file(file.path, commit_message, content, file.sha)
+    except:
+        repo.create_file(file_path, commit_message, content)
+
+# Example usage:
+push_to_github("idn_area_codes.py", "Updated area codes via Streamlit app")
 
 # ==== CONSTANTS ====
 VALID_CARRIERS = ["Atlasat", "Indosat"]
@@ -115,8 +136,8 @@ File: {INTERNATIONAL_RATES}
                     st.success(f"➕ Added new {category} entry.")
 
                 new_content = re.sub(pattern, rf"\1{existing_block}\3", content, flags=re.DOTALL)
-                with open(IDN_AREA_CODES, "w") as f:
-                    f.write(new_content)
+                with open("idn_area_codes.py", "rb") as f:
+                    st.download_button("⬇️ Download Updated idn_area_codes.py", f, file_name="idn_area_codes.py")
 
             # ---- Update international_rates.py ----
             if category == "INTERNATIONAL_PHONE_PREFIXES":
@@ -125,7 +146,7 @@ File: {INTERNATIONAL_RATES}
                 rate_value = st.session_state.rate
 
                 with open(INTERNATIONAL_RATES, "r") as f:
-                    rates_content = f.read()
+                    st.download_button("⬇️ Download Updated international_rates.py", f, file_name="international_rates.py")
 
                 if carrier not in rates_content:
                     insertion_point = re.search(r"INTERNATIONAL_RATES\s*=\s*{", rates_content)
